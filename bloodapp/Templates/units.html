@@ -1,0 +1,26 @@
+{% extends 'dashboard.html' %}
+<!DOCTYPE html>
+<html>
+    <head>
+        {% block content %}
+        <title>Units</title>
+    </head>
+    <body>
+        <div style="padding: 50px;">
+            <h2>Blood Units Available</h2>
+            <table border="1">
+                <tr>
+                    <th>Blood Group</th>
+                    <th>Units Available</th>
+                </tr>
+                {% for s in stock %}
+                <tr>
+                    <td>{{ s.blood }}</td>
+                    <td>{{ s.units }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        {% endblock %}
+    </body>
+</html>

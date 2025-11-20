@@ -1,0 +1,44 @@
+{% extends 'dashboard.html' %}
+<!DOCTYPE html>
+<html>
+    <head>
+        {% block content %}
+        <title>Donor List</title>
+    </head>
+    <body>
+        <div style="padding: 50px;">
+            <div>
+                <h2>Total Donors: {{ total }}</h2>
+            </div>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                        <th>Contact</th>
+                        <th>Units</th>
+                        <th>Blood Group</th>
+                        <th>Health Information</th>
+                        <th>Last Donation Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for l in list %}
+                    <tr>
+                        <td>{{ l.name }}</td>
+                        <td>{{ l.age }}</td>
+                        <td>{{ l.gender }}</td>
+                        <td>{{ l.contact }}</td>
+                        <td>{{ l.units }}</td>
+                        <td>{{ l.blood }}</td>
+                        <td>{{ l.health }}</td>
+                        <td>{{ l.last }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endblock %}
+    </body>
+</html>

@@ -1,0 +1,49 @@
+{% extends 'dashboard.html' %}
+<!DOCTYPE html>
+<html>
+    <head>
+        {% block content %}
+        <title>Blood Request</title>
+    </head>
+    <body>
+        <div style="padding: 50px;">
+            <div>
+                <h2>Total Blood Requests: {{ total }}</h2>
+                <h2>Active Requests: {{ request }}</h2>
+            </div>
+            <table border="1" style="width: 100%;">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                        <th>Blood Group</th>
+                        <th>Units</th>
+                        <th>Urgency Level</th>
+                        <th>Required Date</th>
+                        <th>Hospital Name</th>
+                        <th>Hospital Address</th>
+                        <th>Requester Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for l in list %}
+                    <tr>
+                        <td>{{ l.name }}</td>
+                        <td>{{ l.age }}</td>
+                        <td>{{ l.gender }}</td>
+                        <td>{{ l.blood }}</td>
+                        <td>{{ l.units }}</td>
+                        <td>{{ l.urgent }}</td>
+                        <td>{{ l.date }}</td>
+                        <td>{{ l.hos }}</td>
+                        <td>{{ l.add }}</td>
+                        <td>{{ l.requester }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endblock %}
+    </body>
+</html>

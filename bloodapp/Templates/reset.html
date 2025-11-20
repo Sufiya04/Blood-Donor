@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Reset Password</title>
+    </head>
+    <style>
+        input::placeholder {
+            color: white;
+        }
+        .input-container {
+            position: relative;
+            margin-bottom: 5%;
+        }
+        .input-container input {
+            width: 75%;
+            padding: 4% 12%; 
+            border: 1px solid;
+            font-size: 16px;
+            background-color: rgba(240, 248, 255, 0.336);
+            border: none;
+            color: rgb(214, 214, 214);
+        }
+        input:focus {
+            outline: none;
+        }
+
+    </style>
+    <body style="background: linear-gradient(to right,#c7080c, #d49697);">
+        <div style="padding: 200px 450px; border-radius: 10px; width: 300px; text-align: center;">
+        <h2 style="margin-bottom: 10%; margin-left: 0%;">Reset Password</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="input-container">
+                <input type="email" id="lg_name" name="email" placeholder="Enter Email">
+            </div>
+            <button type="submit" style="padding: 2% 4%; border: none;color: black;border-radius: 4px;" >Send Reset Link</button>
+        </form>
+        <p style="color: black;">Remembered your password? <a href="{% url 'admin' %}"><small style="color: white;">Login here</small></a></p>
+    </body>
+</html>

@@ -1,0 +1,80 @@
+{% extends 'layout.html' %}
+{% block homecontent %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Donor Registration</title>
+        <style>
+            h3
+            {
+                text-align: center;
+                padding: 50px;
+                font-weight: bolder;
+            }
+            body
+            {
+                background-color: #f6f6f6;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            .grid
+            {
+                display: grid;
+                grid-template-columns: repeat(2,1fr);
+                gap: 20px;
+            }
+            button
+            {
+                padding: 5px 50px;
+                background: linear-gradient(to right,#c7080c,#f1bfbf);
+                border: none;
+                margin-top: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h3>Donor Registration</h3>
+            <form method="post" id="donorForm">
+                {% csrf_token %}
+                <div class="grid">
+                    {{ form.name }}
+                    {{ form.gender }}
+
+                    {{ form.age }}
+                    {{ form.contact }}
+
+                    {{ form.blood }}
+                    {{ form.units }}
+
+                    {{ form.smoker }}
+                    {{ form.alcoholic }}
+
+                    {{ form.health }}
+                    {{ form.last }}
+                </div>
+                <center><button type="submit">Submit</button></center>
+            </form>
+        </div>
+        <script>
+            document.getElementById("donorForm").addEventListener("submit", function(event){
+                let age=document.getElementById("age").value;
+                let contact= document.getElementById("contact").value;
+                let smoker = document.getElementById("smoker").value;
+                let alcoholic= document.getElementById("alcoholic").value;
+                if(age < 18 || age> 60){
+                    event.preventDefault();
+                    alert("Age must be 18 or above. You are not eligible for donating blood.")
+                }
+                if(contact.length !== 10){
+                    event.preventDefault();
+                    alert("Contact number must contain exactly 10 digits")
+                }
+                if(smoker==="yes" || alcoholic==="yes"){
+                    event.preventDefault();
+                    alert("You are not eligible for donating blood");
+                }
+            })
+        </script>
+    </body>
+</html>
+{% endblock %}

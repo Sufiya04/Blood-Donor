@@ -1,0 +1,34 @@
+{% extends 'dashboard.html' %}
+<!DOCTYPE html>
+<html>
+    <head>
+        {% block content %}
+        <title>Pending</title>
+    </head>
+    <body>
+        <div style="padding: 50px;">
+            <div>
+                <h2>Pending: {{ pending }}</h2>
+            </div>
+            <table border="1">
+                <tr>
+                    <th>Name</th>
+                    <th>Blood Group</th>
+                    <th>Units</th>
+                    <th>Hospital Name</th>
+                    <th>Status</th>
+                </tr>
+                {% for l in list %}
+                    <tr>
+                        <td>{{ l.name }}</td>
+                        <td>{{ l.blood }}</td>
+                        <td>{{ l.units }}</td>
+                        <td>{{ l.hos }}</td>
+                        <td>{{ l.status }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        {% endblock %}
+    </body>
+</html>

@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+{% block homecontent %}
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load static %}
+        <title>Home</title>
+        <style>
+            .container
+            {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 60px 80px;
+            }
+            p
+            {
+                font-size: large;
+            }
+            h1
+            {
+                letter-spacing: 1px;
+                word-spacing: 3px;
+                line-height: 1.5;
+            }
+        </style>
+    </head>
+    <body>
+        
+        <div class="container">
+            <div class="logo">
+                <h1 class="fw-bold">Donate Blood&#x1FA78;<br>Save Lives.</h1><br>
+                <p >Every donation helps protect someone in need. <br>Be a hero - your blood can save lives.</p>
+            </div>
+            <img src="{% static 'images/donar.png' %}" width="350px">
+        </div>
+        {% endblock %}
+    </body>
+</html>

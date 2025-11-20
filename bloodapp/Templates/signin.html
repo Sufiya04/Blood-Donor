@@ -1,0 +1,45 @@
+{% extends 'login.html' %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Signin</title>
+    </head>
+    <body>
+        {% block content %}
+        <div style="display: flex; justify-content: center;align-items: center; padding-left: 250px;z-index: 999;">
+            <div>
+                <h1 style="text-align: center;color: #c7080c;">SIGNIN</h1><br><br><br>
+            <form method="post">
+            {% csrf_token %}
+
+            <div class="input-container">
+                <label class="floating-label">Username</label><br>
+                {{ form.username }}
+            </div><br>
+
+            <div class="input-container">
+                <label class="floating-label">Email</label><br>
+                {{ form.email }}
+            </div><br>
+
+            <div class="input-container">
+                <label class="floating-label">Password</label><br>
+                {{ form.password1 }}
+            </div><br>
+
+            <div class="input-container">
+                <label class="floating-label">Confirm Password</label><br>
+                {{ form.password2 }}
+            </div><br>
+
+            <button type="submit">Sign Up</button>
+        </form>
+
+        {% if form.errors %}
+            <div style="color:red;">{{ form.errors }}</div>
+        {% endif %}
+            </div>
+        </div>
+        {% endblock %}
+    </body>
+</html>
