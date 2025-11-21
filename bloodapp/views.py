@@ -18,7 +18,10 @@ def donor(request):
     if request.method=='POST':
         form=DonorForm(request.POST)
         if form.is_valid():
-            form.save()
+            donor= form.save()
+            stock, created= BloodStock.objects.get_or_create(blood = donor.blood)
+            stock.units += donor.units
+            stock.save()
             return HttpResponse('Registered Successfully')
     else:
         form=DonorForm()
@@ -51,10 +54,16 @@ def dashboard(request):
     })
 
 def approve(request,id):
-    req= get_object_or_404(Recipient, id=id)
-    req.status= "Approved"
-    req.save()
-    return redirect('dashboard')
+    req= Recipient.objects.get(id= id)
+    stock, created= BloodStock.objects.get_or_create(blood= req.blood)
+    if stock.units >= req.units:
+        stock.units -= req.units
+        stock.save()
+        req.status= "Approved"
+        req.save()
+        return HttpResponse("Request Approved and Stock Updated Successfully")
+    else:
+        return HttpResponse("Not enough stock")
 
 def donorlist(request):
     total= Donor.objects.count()
@@ -78,7 +87,7 @@ def pending(request):
     return render(request,'pending.html', {'pending': pending, 'list': list})
 
 def units(request):
-    stock= Donor.objects.values('blood').annotate(units=Count('blood'))
+    stock= BloodStock.objects.all()
     return render(request, 'units.html', {'stock': stock})
 
 
@@ -100,21 +109,21 @@ def admin_login(request):
     if request.method == "POST":
         form = LoginForm(request, data=request.POST)
         if form.is_valid():
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
-            user = authenticate(username=username, password=password)
-            if user is not None:
-                login(request, user)
-                if form.cleaned_data.get('remember_me'):
-                    request.session.set_expiry(128600)
-                else:
-                    request.session.set_expiry(0)
-                return redirect('dashboard')
+            user = form.get_user() 
+            login(request, user)
+            remember_me = request.POST.get('remember_me')
+            if remember_me:
+                request.session.set_expiry(1209600) 
             else:
-                messages.error(request, "Invalid username or password.")
+                request.session.set_expiry(0)
+
+            return redirect("dashboard")
+        else:
+            messages.error(request, "Invalid username or password.")
     else:
-        form = LoginForm()
-    return render(request, "login.html", {"form": form})
+        form = AuthenticationForm()
+
+    return render(request, "login.html",{"form":form})
 
 def reset(request):
     if request.method == 'POST':

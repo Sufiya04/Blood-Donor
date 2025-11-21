@@ -15,7 +15,7 @@ class DonorForm(forms.ModelForm):
             'smoker':forms.Select(attrs={'class': 'form-control', 'id': 'smoker'}),
             'alcoholic': forms.Select(attrs={'class': 'form-control', 'id': 'alcoholic'}),
             'contact': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Contact', 'id': 'contact'}),
-            'units': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Units'}),
+            'units': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Units'}),
             'health': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Health Information'}),
             'last': forms.DateInput(attrs={'class': 'form-control', 'placeholder': 'Last Donation Date'})
         }
@@ -46,6 +46,7 @@ class SignUpForm(UserCreationForm):
         fields = ['username', 'email', 'password1', 'password2']
 
 class LoginForm(AuthenticationForm):
+    username= forms.EmailField(widget= forms.EmailInput())
     remember_me = forms.BooleanField(required=False, widget=forms.CheckboxInput())
 
 

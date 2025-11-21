@@ -80,7 +80,7 @@
                 <form method="post" action="{% url 'admin' %}">
                 {% csrf_token %}
                 <div class="input-container">
-                    <label class="floating-label">Username</label><br>
+                    <label class="floating-label">Email</label><br>
                     {{ form.username }} 
                 </div><br><br>
                 <div class="input-container">
@@ -88,10 +88,10 @@
                     {{ form.password }}
                 </div><br>
                 <div>
-                    {{ form.remember_me }}&nbsp;Remember Me
-                    <a href="reset" style="padding-left: 25%;color: #c7080c;">Forgot Password?</a><br><br>
+                    <!-- {{ form.remember_me }}&nbsp;Remember Me -->
+                    <a href="reset" style="color: #c7080c;">Forgot Password?</a>
+                    <button type="submit">LOGIN</button>
                 </div>
-                <button type="submit">LOGIN</button>
             </form>
             {% if form.errors %}
             <div class="error">

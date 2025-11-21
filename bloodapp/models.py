@@ -27,7 +27,7 @@ class Donor(models.Model):
     smoker= models.CharField(max_length=3,choices=[('','Are you a smoker?'),('yes','Yes'),('no','No')], default='Are you a smoker?')
     alcoholic= models.CharField(max_length=3, choices=[('','Are you an alcoholic?'),('yes','Yes'),('no','No')], default='Are you an alcoholic?')
     contact= models.CharField(max_length=10)
-    units= models.IntegerField(default=1)
+    units= models.IntegerField()
     health= models.TextField()
     last= models.DateField(null=True, blank=True)
 
@@ -69,6 +69,10 @@ class Recipient(models.Model):
     add= models.CharField(max_length=100)
     requester= models.CharField(max_length=30)
     status= models.CharField(max_length=10, default='Pending', null=True, blank=True)
+
+class BloodStock(models.Model):
+    blood= models.CharField(max_length=3)
+    units= models.IntegerField(default=0)
 
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, username, password=None, **extra_fields):
