@@ -39,6 +39,7 @@ def recipient(request):
         form=RecipientForm()
     return render(request,'recipient.html',{'form': form})
 
+@login_required
 def dashboard(request):
     total_donor=Donor.objects.count()
     total_recipient=Recipient.objects.count()
@@ -53,6 +54,7 @@ def dashboard(request):
         'request': request
     })
 
+@login_required
 def approve(request,id):
     req= Recipient.objects.get(id= id)
     stock, created= BloodStock.objects.get_or_create(blood= req.blood)
@@ -65,31 +67,35 @@ def approve(request,id):
     else:
         return HttpResponse("Not enough stock")
 
+@login_required
 def donorlist(request):
     total= Donor.objects.count()
     list= Donor.objects.all()
     return render(request,'donorlist.html', {'total': total, 'list': list,})
 
+@login_required
 def blood(request):
     total= Recipient.objects.count()
     request= Recipient.objects.filter(status="Pending").count()
     list= Recipient.objects.all()
     return render(request,'request.html', {'total': total, 'list': list,})
 
+@login_required
 def approved(request):
     approve= Recipient.objects.filter(status="Approved").count()
     list= Recipient.objects.filter(status="Approved")
     return render(request,'approve.html', {'approve': approve, 'list': list})
 
+@login_required
 def pending(request):
     pending= Recipient.objects.filter(status="Pending").count()
     list= Recipient.objects.filter(status="Pending")
     return render(request,'pending.html', {'pending': pending, 'list': list})
 
+@login_required
 def units(request):
     stock= BloodStock.objects.all()
     return render(request, 'units.html', {'stock': stock})
-
 
 def admin_signin(request):
     if request.method == 'POST':
