@@ -10,16 +10,17 @@
                 text-align: center;
                 padding: 50px;
                 font-weight: bolder;
+                color: #c7080c;
             }
             body
             {
-                background-color: #f6f6f6;
+                background-color: #f1bfbf;
                 font-family: Arial, Helvetica, sans-serif;
             }
             .grid
             {
                 display: grid;
-                grid-template-columns: repeat(2,1fr);
+                /* grid-template-columns: repeat(2,1fr); */
                 gap: 20px;
             }
             button
@@ -28,11 +29,23 @@
                 background: linear-gradient(to right,#c7080c,#f1bfbf);
                 border: none;
                 margin-top: 20px;
+                margin-bottom: 20px;
+            }
+            .form-control, .form-control::placeholder
+            {
+                color: #c7080c;
+            }
+            .form-control
+            {
+                background-color: transparent;
+                border: 1px solid #c7080c;
+                width: 50%;
+                margin-left: 250px;
             }
         </style>
     </head>
     <body>
-        <div class="container">
+        <div class="container" >
             <h3>Donor Registration</h3>
             <form method="post" id="donorForm">
                 {% csrf_token %}

@@ -6,9 +6,9 @@
     </head>
     <body>
         {% block content %}
-        <div style="display: flex; justify-content: center;align-items: center; padding-left: 250px;z-index: 999;">
+        <div class="login" style="padding: 20px 50px;margin-top: 80px;">
             <div>
-                <h1 style="text-align: center;color: #c7080c;">SIGNIN</h1><br><br><br>
+                <h1 style="text-align: center;color: #c7080c;">SIGNIN</h1><br>
             <form method="post">
             {% csrf_token %}
 
@@ -32,7 +32,7 @@
                 {{ form.password2 }}
             </div><br>
 
-            <button type="submit">Sign Up</button>
+            <center><button type="submit">Sign Up</button></center>
         </form>
 
         {% if form.errors %}

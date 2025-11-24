@@ -10,15 +10,17 @@
                 text-align: center;
                 padding: 50px;
                 font-weight: bolder;
+                color: #c7080c;
             }
             body
             {
-                background-color: #f6f6f6;
+                background-color: #f1bfbf;
             }
             button
             {
                 padding: 5px 50px;
                 margin-top: 20px;
+                margin-bottom: 20px;
                 border: none;
                 background: linear-gradient(to right, #c7080c, #f1bfbf);
             }
@@ -26,7 +28,18 @@
             {
                 display: grid;
                 gap: 20px;
-                grid-template-columns: repeat(2,1fr);
+                /* grid-template-columns: repeat(2,1fr); */
+            }
+            .form-control
+            {
+                background-color: transparent;
+                border: 1px solid #c7080c;
+                margin-left: 250px;
+                width: 50%;
+            }
+            .form-control, .form-control::placeholder
+            {
+                color: #c7080c;
             }
         </style>
     </head>
